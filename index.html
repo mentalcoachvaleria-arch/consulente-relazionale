@@ -13,8 +13,7 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://mentalcoachvaleria.it/sitemap.xml">
 
     <!-- Cookiebot -->
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f04a87ad-85ac-402f-a739-14651de425dc" data-blockingmode="auto" type="text/javascript" async crossorigin="anonymous"></script>
-
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f04a87ad-85ac-402f-a739-14651de425dc"  type="text/javascript"></script>
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
@@ -207,14 +206,38 @@
           <p>Qualora tu o io riteniamo che non si stiano facendo progressi adeguati, valuteremo se e come proseguire, anche prima del tempo concordato e senza alcun impegno.</p>
         </section>
       </div>
-      <section class="modal-certifications">
-        <h3>Certificazioni Professionali</h3>
-        <button class="btn-cta btn-cert">
-          <i class="fa-solid fa-certificate"></i>
-          Scopri le mie certificazioni
-        </button>
-        <p class="modal-footer-note">Rigore scientifico ed etico per la tua crescita</p>
-      </section>
+     <!-- ============================================
+📜 MODAL CERTIFICAZIONI (AGGIORNATO)
+============================================ -->
+<section class="modal-certifications">
+  <h3>Certificazioni Professionali</h3>
+  
+  <!-- Pulsante Trigger -->
+  <button class="btn-cta btn-cert">
+    <i class="fa-solid fa-certificate"></i>
+    Scopri le mie certificazioni
+  </button>
+  
+  <!-- ✅ NUOVO: Container Immagine Certificato (Nascosto di default) -->
+  <div id="cert-image-container" class="cert-image-wrapper" aria-hidden="true" hidden>
+    <div class="cert-image-overlay" id="cert-overlay"></div>
+    <div class="cert-image-box">
+      <button id="cert-close-btn" class="cert-close" aria-label="Chiudi certificato">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img 
+        src="https://raw.githubusercontent.com/mentalcoachvaleria-arch/Galleria-per-sito-web/refs/heads/main/certificato1.jpg" 
+        alt="Certificazione professionale Valeria Moretti" 
+        class="cert-image"
+        loading="lazy"
+      >
+      <p class="cert-caption">Certificazione ICF - International Coaching Federation</p>
+    </div>
+  </div>
+  
+  <p class="modal-footer-note">Rigore scientifico ed etico per la tua crescita</p>
+</section>
+
       <section class="modal-pricing">
         <div class="pricing-card">
           <div class="pricing-icon-bg"><i class="fa-solid fa-coins"></i></div>
@@ -437,7 +460,6 @@
       <div class="testimonials-wrapper">
         <div class="testimonials-track" id="testimonials-track"></div>
       </div>
-      <div id="testimonials-dots"></div>
     </div>
   </section>
 
