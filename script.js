@@ -1039,3 +1039,136 @@ ${profile.advice}`;
 
   console.log('🚀 Valeria Moretti Website v8.5 initialized');
 });
+
+
+/* ============================================
+📱 MOBILE HOVER EFFECTS (TAP INTERACTIONS)
+============================================ */
+
+// Funzione per aggiungere classe active al tap
+function addMobileHoverEffect(selector) {
+    const elements = document.querySelectorAll(selector);
+    
+    elements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.classList.add('active');
+        }, { passive: true });
+        
+        element.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 300);
+        }, { passive: true });
+        
+        element.addEventListener('touchcancel', function() {
+            this.classList.remove('active');
+        }, { passive: true });
+    });
+}
+
+// Applica effetti hover mobile a tutti gli elementi interattivi
+document.addEventListener('DOMContentLoaded', function() {
+    // Problem items
+    addMobileHoverEffect('.problem-item');
+    
+    // Benefit cards
+    addMobileHoverEffect('.benefit-card');
+    
+    // Quiz cards
+    addMobileHoverEffect('.quiz-card');
+    
+    // Service cards
+    addMobileHoverEffect('.service-card');
+    
+    // FAQ items
+    addMobileHoverEffect('.faq-item');
+    
+    // Video quote
+    addMobileHoverEffect('.video-quote');
+    
+    // About quote
+    addMobileHoverEffect('.about-quote');
+    
+    // Testimonial cards
+    addMobileHoverEffect('.testimonial-card-inner');
+    
+    // Buttons
+    addMobileHoverEffect('.btn-cta, .btn-cta-main, #Contattami, #iniziatquiz, #inziailtuoopercorso2, #inziailtuoopercorso3, #inziailtuoopercorso4, #RichiediInformazioni, #RichiediInformazioni2, #RichiediInformazioni3, #bntprenota, .btn-whatsapp, .btn-step-next, .btn-submit, #contact-submit-btn, #quiz-submit-btn');
+    
+    // Nav links
+    addMobileHoverEffect('.nav-link, .mobile-links a, .btn-mobile');
+    
+    // Social icons
+    addMobileHoverEffect('.socialContainer');
+});
+
+// Fix per iOS: previeni zoom su doppio tap
+document.addEventListener('DOMContentLoaded', function() {
+    const metaViewport = document.querySelector('meta[name="viewport"]');
+    if (metaViewport) {
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    }
+});
+
+/* ============================================
+📜 CERTIFICATE TOGGLE FUNCTIONALITY
+============================================ */
+document.addEventListener('DOMContentLoaded', function() {
+  const certBtn = document.querySelector('.btn-cert');
+  const certContainer = document.getElementById('cert-image-container');
+  const certOverlay = document.getElementById('cert-overlay');
+  const certCloseBtn = document.getElementById('cert-close-btn');
+
+  if (certBtn && certContainer) {
+    
+    // Toggle immagine al click sul pulsante
+    certBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      certContainer.classList.toggle('active');
+      certContainer.hidden = !certContainer.classList.contains('active');
+      certContainer.setAttribute('aria-hidden', !certContainer.classList.contains('active'));
+      
+      // Prevenire scroll del body quando il modal è aperto
+      document.body.style.overflow = certContainer.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Chiudi con il pulsante X
+    if (certCloseBtn) {
+      certCloseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        certContainer.classList.remove('active');
+        certContainer.hidden = true;
+        certContainer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Chiudi cliccando sull'overlay (fuori dall'immagine)
+    if (certOverlay) {
+      certOverlay.addEventListener('click', function() {
+        certContainer.classList.remove('active');
+        certContainer.hidden = true;
+        certContainer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Chiudi con tasto ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && certContainer.classList.contains('active')) {
+        certContainer.classList.remove('active');
+        certContainer.hidden = true;
+        certContainer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Prevenire chiusura cliccando dentro il box immagine
+    const certBox = certContainer.querySelector('.cert-image-box');
+    if (certBox) {
+      certBox.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+  }
+});
