@@ -78,6 +78,8 @@ margin: 3rem 0;
 .contact-direct-grid {
 grid-template-columns: repeat(3, 1fr);
 }
+
+
 }
 .contact-direct-card {
 background: white;
@@ -117,6 +119,13 @@ font-size: 0.95rem;
 .contact-direct-card a:hover {
 color: var(--brand-primary);
 }
+
+
+
+.main{
+padding: 20px;
+}
+
 
 /* 🆕 Social Panel Styles */
 .social-card-full {
@@ -219,7 +228,7 @@ box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
 
 /* 🆕 Quiz CTA Section */
 .quiz-cta-section {
-background: linear-gradient(135deg, var(--brand-primary) 0%, #8b5cf6 100%);
+background: var(--brand-primary);
 padding: 4rem 2rem;
 border-radius: 2rem;
 text-align: center;
@@ -552,7 +561,9 @@ Scopri le mie certificazioni
 <!-- ============================================
 🏠 MAIN CONTENT
 ============================================ -->
-<main>
+<main style="
+    padding: 20px;
+">
 <!-- Hero Section -->
 <section class="contacts-hero animate-on-scroll">
 <div class="container">
@@ -870,24 +881,25 @@ Scopri le mie certificazioni
 </fieldset>
 <span class="input-error" id="error-discovery">Seleziona un'opzione</span>
 </div>
-<!-- STEP 7: Contatti -->
+     <!-- STEP 7: Contatti (name, email, phone) -->
 <div class="contact-step" data-step="7">
-<h4 class="step-section-title">I tuoi contatti</h4>
-<div class="input-group">
-<label for="contact-name" class="field-label">Nome *</label>
-<input type="text" id="contact-name" name="name" data-label="👤 Nome" placeholder="Il tuo nome" required>
-<span class="input-error" id="error-name">Inserisci un nome valido</span>
+  <h4 class="step-section-title">I tuoi contatti</h4>
+  <div class="input-group">
+    <label for="contact-name" class="field-label">Nome *</label>
+    <input type="text" id="contact-name" name="name" placeholder="Il tuo nome" required>
+    <span class="input-error" id="error-name">Inserisci un nome valido</span>
+  </div>
+  <div class="input-group">
+    <label for="contact-email" class="field-label">Email *</label>
+    <input type="email" id="contact-email" name="email" placeholder="tua@email.com" required>
+    <span class="input-error" id="error-email">Inserisci un'email valida</span>
+  </div>
+  <div class="input-group">
+    <label for="contact-phone" class="field-label">Telefono (opzionale)</label>
+    <input type="tel" id="contact-phone" name="phone" placeholder="+39 345 123 4567">
+  </div>
 </div>
-<div class="input-group">
-<label for="contact-email" class="field-label">Email *</label>
-<input type="email" id="contact-email" name="email" data-label="✉️ Email" placeholder="tua@email.com" required>
-<span class="input-error" id="error-email">Inserisci un'email valida</span>
-</div>
-<div class="input-group">
-<label for="contact-phone" class="field-label">Telefono (opzionale)</label>
-<input type="tel" id="contact-phone" name="phone" data-label="📞 Telefono" placeholder="+39 345 123 4567">
-</div>
-</div>
+
 <!-- STEP 8: Privacy -->
 <div class="contact-step" data-step="8">
 <label class="privacy-label">
