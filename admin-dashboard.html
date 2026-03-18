@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Valeria Mental Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    /* ===== CSS VARIABLES - BRAND THEME ===== */
+    :root {
+      --brand-primary: #591c2f;
+      --brand-hover: #451624;
+      --brand-secondary: #7FC8C8;
+      --bg-general: #edddc8;
+      --text-general: #2D2D2D;
+      --bg-dark: #141414;
+      --bg-card: #1c1c1c;
+      --bg-input: rgba(255,255,255,0.08);
+      --border-light: rgba(255,255,255,0.1);
+      --border-focus: rgba(89, 28, 47, 0.6);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255,255,255,0.7);
+      --text-muted: rgba(255,255,255,0.4);
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+      --transition: all 0.2s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== UTILITIES ===== */
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .rounded-xl { border-radius: 12px; }
+    .rounded-2xl { border-radius: 16px; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .text-muted { color: var(--text-muted); }
+    .text-secondary { color: var(--text-secondary); }
+    .w-full { width: 100%; }
+    .max-w-4xl { max-width: 1024px; margin: 0 auto; }
+    
+    .animate-fade { animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0.85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 1rem; }
+    .navbar-logo {
+      width: 40px; height: 40px;
+      background: var(--brand-primary);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem;
+    }
+    .navbar-title h1 { font-size: 1.1rem; font-weight: 700; line-height: 1; }
+    .navbar-title p { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+    
+    .navbar-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .btn-icon {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px; background: transparent; border: none;
+      color: var(--text-secondary); cursor: pointer;
+      transition: var(--transition); font-size: 1.1rem;
+    }
+    .btn-icon:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+    .btn-icon.coral:hover { color: var(--brand-primary); background: rgba(89,28,47,0.15); }
+    
+    .btn {
+      padding: 0.65rem 1.25rem;
+      background: var(--brand-primary);
+      color: white; border: none; border-radius: 10px;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: var(--transition);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn:hover { background: var(--brand-hover); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+    .btn-outline:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+    .btn-success { background: var(--success); }
+    .btn-success:hover { filter: brightness(0.95); }
+    
+    .mobile-toggle { display: flex; }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+
+    /* ===== LAYOUT ===== */
+    .dashboard { display: flex; min-height: calc(100vh - 72px); }
+    
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-light);
+      padding: 1.25rem;
+      overflow-y: auto;
+      display: none;
+    }
+    @media (min-width: 768px) { .sidebar { display: block; } }
+    
+    .sidebar-title {
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin: 0 0.5rem 1rem; padding-left: 0.5rem;
+    }
+    
+    .nav-btn {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      background: transparent; border: none;
+      border-radius: 10px;
+      color: var(--text-secondary);
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: var(--transition);
+      text-align: left; margin-bottom: 0.25rem;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+    .nav-btn.active {
+      background: var(--brand-primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(89, 28, 47, 0.35);
+    }
+    .nav-btn i { width: 20px; text-align: center; font-size: 1rem; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { flex: 1; padding: 1.5rem 2rem; overflow-y: auto; }
+    @media (max-width: 767px) { .main-content { padding: 1rem; } }
+    
+    .tab-content { animation: fadeIn 0.25s ease; }
+    .tab-content.hidden { display: none; }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .card-header h3 { font-size: 1.15rem; font-weight: 700; }
+    .card-header i { color: var(--brand-primary); font-size: 1.1rem; }
+
+    /* ===== FORMS ===== */
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+    
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label {
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.03em;
+      color: var(--text-muted);
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 0.95rem; font-family: inherit;
+      transition: var(--transition);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(89, 28, 47, 0.2);
+    }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    
+    .input-with-btn { display: flex; gap: 0.5rem; }
+    .input-with-btn input { flex: 1; }
+    .btn-sm { padding: 0.5rem 0.9rem; font-size: 0.85rem; border-radius: 8px; }
+
+    /* ===== TOGGLE SWITCH ===== */
+    .toggle-wrapper { display: flex; align-items: center; gap: 0.75rem; }
+    .toggle {
+      width: 46px; height: 24px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      position: relative; cursor: pointer;
+      transition: var(--transition);
+    }
+    .toggle::after {
+      content: ''; position: absolute;
+      width: 18px; height: 18px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      top: 3px; left: 3px;
+      transition: var(--transition);
+    }
+    .toggle.active { background: var(--brand-primary); }
+    .toggle.active::after { transform: translateX(22px); background: white; }
+    .toggle-label { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* ===== COLOR PICKER ===== */
+    .color-row { display: flex; align-items: center; gap: 0.75rem; }
+    .color-input {
+      width: 48px; height: 38px;
+      border: none; border-radius: 8px;
+      cursor: pointer; background: none; padding: 0;
+    }
+    .color-preview {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      border: 2px solid var(--border-light);
+    }
+    .color-hex {
+      max-width: 85px; font-family: monospace;
+      font-size: 0.85rem; background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      border-radius: 6px; padding: 0.4rem 0.6rem;
+      color: var(--text-primary);
+    }
+    
+    .presets-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem; margin-top: 0.75rem;
+    }
+    @media (min-width: 480px) { .presets-grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    .preset-btn {
+      padding: 0.5rem; border-radius: 8px;
+      background: var(--bg-input); border: 1px solid var(--border-light);
+      color: var(--text-secondary); font-size: 0.75rem;
+      cursor: pointer; transition: var(--transition);
+      text-align: center;
+    }
+    .preset-btn:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+    .preset-btn.active { background: var(--brand-primary); color: white; border-color: var(--brand-primary); }
+
+    /* ===== LIVE PREVIEW ===== */
+    .live-preview {
+      background: var(--bg-general);
+      color: var(--text-general);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+      border: 2px dashed var(--border-light);
+    }
+    .live-preview h4 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--brand-primary); }
+    .live-preview .btn-example {
+      padding: 0.5rem 1rem;
+      background: var(--brand-primary);
+      color: white; border: none;
+      border-radius: 8px; font-weight: 600;
+      cursor: default;
+    }
+
+    /* ===== QUIZ BUILDER ===== */
+    .question-card, .profile-card, .review-card, .formfield-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .question-header, .profile-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1rem;
+    }
+    .question-title { font-weight: 700; color: var(--brand-primary); }
+    .btn-delete {
+      background: none; border: none;
+      color: var(--danger); cursor: pointer;
+      font-size: 0.9rem; transition: var(--transition);
+    }
+    .btn-delete:hover { color: #f87171; }
+    
+    .answer-row { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+    @media (min-width: 640px) { .answer-row { grid-template-columns: 2fr 1fr auto; } }
+    .answer-input {
+      padding: 0.65rem 0.9rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      color: var(--text-primary); font-size: 0.9rem;
+    }
+    .answer-input:focus { outline: none; border-color: var(--brand-primary); }
+    .answer-select {
+      padding: 0.5rem;
+      background: rgba(89, 28, 47, 0.25);
+      color: #ff9eaa; border: none;
+      border-radius: 6px; font-size: 0.8rem;
+      cursor: pointer;
+    }
+    
+    .profile-tabs { display: flex; gap: 0.25rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .profile-tab {
+      padding: 0.5rem 1rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 0.85rem; cursor: pointer;
+      transition: var(--transition);
+    }
+    .profile-tab.active { background: var(--brand-primary); color: white; border-color: var(--brand-primary); }
+    .profile-content { display: none; }
+    .profile-content.active { display: block; }
+
+    /* ===== FORM BUILDER ===== */
+    .field-type-select {
+      padding: 0.5rem;
+      background: rgba(127, 200, 200, 0.2);
+      color: #7FC8C8; border: none;
+      border-radius: 6px; font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .options-list { margin-left: 1rem; margin-top: 0.5rem; }
+    .option-row { display: flex; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; }
+    .option-row input { flex: 1; }
+
+    /* ===== REVIEWS ===== */
+    .stars { display: flex; gap: 2px; color: #fbbf24; }
+    .stars i { cursor: pointer; transition: var(--transition); }
+    .stars i.filled { color: #fbbf24; }
+    .stars i:hover { transform: scale(1.1); }
+
+    /* ===== MODALS ===== */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200; padding: 1rem;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    
+    .modal {
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      width: 100%; max-width: 720px;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: var(--shadow-modal);
+      transform: scale(0.95); transition: var(--transition);
+    }
+    .modal-overlay.active .modal { transform: scale(1); }
+    
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .modal-header h3 { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    .modal-close {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; background: transparent;
+      border: none; color: var(--text-secondary);
+      cursor: pointer; transition: var(--transition);
+      font-size: 1.2rem;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+    
+    .modal-body { padding: 1.5rem; }
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-light);
+      display: flex; justify-content: flex-end; gap: 0.75rem;
+    }
+
+    /* ===== HELP MODAL CONTENT ===== */
+    .help-step {
+      display: flex; gap: 1rem; padding: 1rem;
+      background: var(--bg-input);
+      border-radius: 12px; margin-bottom: 0.75rem;
+    }
+    .help-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--brand-primary);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem;
+    }
+    .help-text h4 { font-weight: 600; margin-bottom: 0.25rem; }
+    .help-text p { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* ===== QUIZ PREVIEW MODAL ===== */
+    .quiz-preview-container {
+      background: white; color: #1a1a1a;
+      border-radius: 16px; padding: 1.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .quiz-progress {
+      height: 6px; background: #e5e7eb;
+      border-radius: 3px; margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%; background: var(--brand-primary);
+      width: 28%; border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .quiz-question { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; }
+    .quiz-option {
+      display: block; width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: #f9fafb; border: 2px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 0.5rem;
+      text-align: left; cursor: pointer;
+      transition: var(--transition); font-size: 0.95rem;
+    }
+    .quiz-option:hover { border-color: var(--brand-primary); background: #fef2f5; }
+    .quiz-option.selected {
+      background: var(--brand-primary); color: white;
+      border-color: var(--brand-primary);
+    }
+
+    /* ===== FORM PREVIEW MODAL ===== */
+    .form-preview-container {
+      background: white; color: #1a1a1a;
+      border-radius: 16px; padding: 1.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-preview-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--brand-primary); }
+    .form-preview-field { margin-bottom: 1.25rem; }
+    .form-preview-field label {
+      display: block; font-weight: 600; margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .form-preview-field input, .form-preview-field textarea, .form-preview-field select {
+      width: 100%; padding: 0.75rem;
+      border: 1px solid #d1d5db; border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .form-preview-field .radio-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .form-preview-field .radio-option {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .form-preview-scale { display: flex; justify-content: space-between; margin-top: 0.5rem; }
+    .form-preview-scale span { font-size: 0.8rem; color: #6b7280; }
+
+    /* ===== SAVE BAR ===== */
+    .save-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-light);
+      padding: 0.85rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+    }
+    @media (min-width: 768px) { .save-bar { padding: 0.85rem 2rem; } }
+    
+    .save-status { font-size: 0.9rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem; }
+    .save-status.saved { color: var(--success); }
+    .save-status.unsaved { color: var(--warning); }
+
+    /* ===== MOBILE SIDEBAR ===== */
+    .sidebar-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 95;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+    }
+    .sidebar-overlay.active { opacity: 1; visibility: visible; }
+    @media (max-width: 767px) {
+      .sidebar {
+        position: fixed; top: 72px; left: 0; bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 98;
+      }
+      .sidebar.active { transform: translateX(0); }
+    }
+
+    /* ===== LOADING ===== */
+    .loading-overlay {
+      position: fixed; inset: 0;
+      background: rgba(20, 20, 20, 0.98);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 300;
+    }
+    .spinner {
+      width: 44px; height: 44px;
+      border: 3px solid var(--border-light);
+      border-top-color: var(--brand-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.25rem; padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .section-header h2 { font-size: 1.3rem; font-weight: 700; }
+    .section-header i { color: var(--brand-primary); font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Overlay -->
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- App Container -->
+  <div id="app" class="min-h-screen flex flex-col">
+    
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <div class="navbar-logo"><i class="fa-solid fa-user-tie"></i></div>
+        <div class="navbar-title">
+          <h1>Admin Dashboard</h1>
+          <p>Valeria Mental Coach</p>
+        </div>
+      </div>
+      <div class="navbar-actions">
+        <button class="btn-icon coral" id="btnHelp" title="Guida"><i class="fa-solid fa-circle-question"></i></button>
+        <button class="btn btn-outline btn-sm hidden sm:flex" id="btnPreviewQuiz">
+          <i class="fa-solid fa-clipboard-question"></i> Anteprima Quiz
+        </button>
+        <button class="btn btn-outline btn-sm hidden sm:flex" id="btnPreviewForm">
+          <i class="fa-solid fa-envelope"></i> Anteprima Modulo
+        </button>
+        <div style="width:1px;height:24px;background:var(--border-light);margin:0 0.25rem;"></div>
+        <button id="logoutBtn" class="btn-icon" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></button>
+        <button id="mobileToggle" class="btn-icon mobile-toggle" title="Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </nav>
+
+    <!-- ===== DASHBOARD LAYOUT ===== -->
+    <div class="dashboard">
+      
+      <!-- Overlay mobile sidebar -->
+      <div id="sidebarOverlay" class="sidebar-overlay"></div>
+      
+      <!-- Sidebar Navigation -->
+      <aside id="sidebar" class="sidebar">
+        <p class="sidebar-title">Menu Navigazione</p>
+        
+        <button class="nav-btn active" data-tab="general">
+          <i class="fa-solid fa-gear"></i><span>Impostazioni Generali</span>
+        </button>
+        <button class="nav-btn" data-tab="media">
+          <i class="fa-solid fa-images"></i><span>Foto e Video</span>
+        </button>
+        <button class="nav-btn" data-tab="colors">
+          <i class="fa-solid fa-palette"></i><span>Colori del Brand</span>
+        </button>
+        <button class="nav-btn" data-tab="quiz">
+          <i class="fa-solid fa-brain"></i><span>Gestione Quiz + Risultati</span>
+        </button>
+        <button class="nav-btn" data-tab="contact">
+          <i class="fa-solid fa-comments"></i><span>Modulo di Contatto</span>
+        </button>
+        <button class="nav-btn" data-tab="social">
+          <i class="fa-solid fa-share-nodes"></i><span>Social & Contatti</span>
+        </button>
+        <button class="nav-btn" data-tab="reviews">
+          <i class="fa-solid fa-star"></i><span>Gestione Recensioni</span>
+        </button>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <div class="max-w-4xl">
+          
+          <!-- ===== TAB: IMPOSTAZIONI GENERALI ===== -->
+          <div id="tab-general" class="tab-content animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-gear"></i><h2>Impostazioni Generali</h2>
+            </div>
+            
+            <div class="card">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="quizTitle">Titolo Sezione Quiz (Home)</label>
+                  <input type="text" id="quizTitle" value="Scopri il tuo schema relazionale">
+                </div>
+                <div class="form-group">
+                  <label for="pixelId">Facebook Pixel ID</label>
+                  <input type="text" id="pixelId" placeholder="Es: 1234567890" value="">
+                </div>
+                <div class="form-group">
+                  <label>Modalità Manutenzione</label>
+                  <div class="toggle-wrapper">
+                    <div class="toggle" id="maintenanceToggle"></div>
+                    <span class="toggle-label" id="maintenanceLabel">Disattivata</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 flex justify-end">
+                <button class="btn btn-success" onclick="saveSection('general')">
+                  <i class="fa-solid fa-floppy-disk"></i> Salva Impostazioni
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== TAB: FOTO E VIDEO ===== -->
+          <div id="tab-media" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-images"></i><h2>Gestione Foto e Video</h2>
+            </div>
+            
+            <!-- Carousel "Ciao, sono Valeria" -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-carousel"></i><h3>Carousel "Ciao, sono Valeria"</h3>
+              </div>
+              <p class="text-sm text-muted mb-4">Immagini che ruotano automaticamente ogni 3 secondi nella home.</p>
+              
+              <div id="carouselList">
+                <div class="input-with-btn mb-2">
+                  <input type="url" class="carousel-url" placeholder="https://..." value="https://example.com/fatto1.png">
+                  <button class="btn btn-sm btn-outline" onclick="removeCarouselItem(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="input-with-btn mb-2">
+                  <input type="url" class="carousel-url" placeholder="https://..." value="https://example.com/fatto2.png">
+                  <button class="btn btn-sm btn-outline" onclick="removeCarouselItem(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="input-with-btn mb-2">
+                  <input type="url" class="carousel-url" placeholder="https://..." value="https://example.com/fatto3.png">
+                  <button class="btn btn-sm btn-outline" onclick="removeCarouselItem(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </div>
+              <button class="btn btn-sm mt-2" onclick="addCarouselItem()">
+                <i class="fa-solid fa-plus"></i> Aggiungi Foto
+              </button>
+            </div>
+            
+            <!-- Sezione "Il mio Studio" -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-building"></i><h3>Sezione "Il mio Studio"</h3>
+              </div>
+              <div class="form-group">
+                <label for="studioImage">Immagine Principale Studio</label>
+                <input type="url" id="studioImage" placeholder="https://..." value="https://example.com/3-fatto.png">
+              </div>
+            </div>
+            
+            <!-- Certificazioni -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-certificate"></i><h3>Certificazioni (Accordo di Coaching)</h3>
+              </div>
+              <p class="text-sm text-muted mb-4">Immagini visibili nella sezione legale/professionale.</p>
+              
+              <div id="certList">
+                <div class="input-with-btn mb-2">
+                  <input type="url" class="cert-url" placeholder="https://..." value="https://example.com/certificato1.jpg">
+                  <button class="btn btn-sm btn-outline" onclick="removeCertItem(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </div>
+              <button class="btn btn-sm mt-2" onclick="addCertItem()">
+                <i class="fa-solid fa-plus"></i> Aggiungi Certificazione
+              </button>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('media')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Media
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== TAB: COLORI DEL BRAND ===== -->
+          <div id="tab-colors" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-palette"></i><h2>Colori del Brand (Stile Visivo)</h2>
+            </div>
+            
+            <div class="card">
+              <h3 class="font-semibold mb-4">A. Colori Singoli</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Colore Primario</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="colorPrimary" value="#591c2f">
+                    <div class="color-preview" id="previewPrimary" style="background:#591c2f;"></div>
+                    <input type="text" class="color-hex" id="colorPrimaryText" value="#591c2f">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Colore Hover</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="colorHover" value="#451624">
+                    <div class="color-preview" id="previewHover" style="background:#451624;"></div>
+                    <input type="text" class="color-hex" id="colorHoverText" value="#451624">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Colore Secondario</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="colorSecondary" value="#7FC8C8">
+                    <div class="color-preview" id="previewSecondary" style="background:#7FC8C8;"></div>
+                    <input type="text" class="color-hex" id="colorSecondaryText" value="#7FC8C8">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Colore Sfondo Generale</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="colorBg" value="#edddc8">
+                    <div class="color-preview" id="previewBg" style="background:#edddc8;"></div>
+                    <input type="text" class="color-hex" id="colorBgText" value="#edddc8">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Colore Testo Generale</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="colorText" value="#2D2D2D">
+                    <div class="color-preview" id="previewText" style="background:#2D2D2D;"></div>
+                    <input type="text" class="color-hex" id="colorTextText" value="#2D2D2D">
+                  </div>
+                </div>
+              </div>
+              
+              <h3 class="font-semibold mb-4 mt-6">B. Navbar & Footer</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Sfondo Navbar</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="navbarBg" value="#1c1c1c">
+                    <div class="color-preview" id="previewNavbarBg" style="background:#1c1c1c;"></div>
+                    <input type="text" class="color-hex" id="navbarBgText" value="#1c1c1c">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Testo Navbar</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="navbarText" value="#ffffff">
+                    <div class="color-preview" id="previewNavbarText" style="background:#ffffff;"></div>
+                    <input type="text" class="color-hex" id="navbarTextText" value="#ffffff">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Sfondo Footer</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="footerBg" value="#141414">
+                    <div class="color-preview" id="previewFooterBg" style="background:#141414;"></div>
+                    <input type="text" class="color-hex" id="footerBgText" value="#141414">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Testo Footer</label>
+                  <div class="color-row">
+                    <input type="color" class="color-input" id="footerText" value="#a3a3a3">
+                    <div class="color-preview" id="previewFooterText" style="background:#a3a3a3;"></div>
+                    <input type="text" class="color-hex" id="footerTextText" value="#a3a3a3">
+                  </div>
+                </div>
+              </div>
+              
+              <h3 class="font-semibold mb-4 mt-6">C. Palette Suggerite (Preset)</h3>
+              <div class="presets-grid">
+                <button class="preset-btn active" data-preset="original">Original</button>
+                <button class="preset-btn" data-preset="ocean">Ocean</button>
+                <button class="preset-btn" data-preset="forest">Forest</button>
+                <button class="preset-btn" data-preset="sunset">Sunset</button>
+                <button class="preset-btn" data-preset="elegant">Elegant</button>
+                <button class="preset-btn" data-preset="dark">Dark Mode</button>
+                <button class="preset-btn" data-preset="minimal">Minimal</button>
+                <button class="preset-btn" data-preset="rose">Rose Gold</button>
+              </div>
+              <button class="btn btn-outline btn-sm mt-4" onclick="resetColors()">
+                <i class="fa-solid fa-rotate-left"></i> Ripristina Default
+              </button>
+              
+              <h3 class="font-semibold mb-4 mt-6">D. Anteprima Live</h3>
+              <div class="live-preview" id="livePreview">
+                <h4 id="previewTitle">Scopri il tuo schema relazionale</h4>
+                <p style="margin-bottom:1rem;color:inherit;">Un esempio di come apparirà il titolo e i pulsanti sul tuo sito con i colori selezionati.</p>
+                <button class="btn-example" id="previewBtn">Prenota ora</button>
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('colors')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Colori
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== TAB: QUIZ + RISULTATI ===== -->
+          <div id="tab-quiz" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-brain"></i><h2>Gestione Quiz e Risultati</h2>
+            </div>
+            
+            <!-- Configurazione Generale Quiz -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-sliders"></i><h3>Configurazione Generale</h3>
+              </div>
+              <div class="form-group">
+                <label for="quizMainTitle">Titolo del Quiz</label>
+                <input type="text" id="quizMainTitle" value="Test del Pattern Relazionale">
+              </div>
+            </div>
+            
+            <!-- Gestione Domande -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-list-check"></i><h3>Gestione Domande</h3>
+              </div>
+              <p class="text-sm text-muted mb-4">Ogni opzione va assegnata a un profilo (A/B/C/D). Il sistema conta le scelte per determinare il risultato.</p>
+              
+              <div id="questionsList">
+                <!-- Domanda 1 -->
+                <div class="question-card">
+                  <div class="question-header">
+                    <span class="question-title">Domanda 1</span>
+                    <button class="btn-delete" onclick="removeQuestion(this)"><i class="fa-solid fa-trash"></i> Elimina</button>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Testo Domanda</label>
+                    <input type="text" class="question-text" value="Quando ricevi un messaggio dalla persona che stai frequentando:">
+                  </div>
+                  <label class="text-sm font-semibold mb-2">Opzioni di Risposta</label>
+                  <div class="answers-container">
+                    <div class="answer-row">
+                      <input type="text" class="answer-input" value="Rispondo quasi subito, non vedo l'ora di sentire la sua voce">
+                      <select class="answer-select">
+                        <option value="A">Profilo A</option>
+                        <option value="B">Profilo B</option>
+                        <option value="C">Profilo C</option>
+                        <option value="D">Profilo D</option>
+                      </select>
+                      <button class="btn-delete" onclick="removeAnswer(this)"><i class="fa-solid fa-minus"></i></button>
+                    </div>
+                    <div class="answer-row">
+                      <input type="text" class="answer-input" value="Controllo ma aspetto un po' prima di rispondere">
+                      <select class="answer-select">
+                        <option value="A">Profilo A</option>
+                        <option value="B" selected>Profilo B</option>
+                        <option value="C">Profilo C</option>
+                        <option value="D">Profilo D</option>
+                      </select>
+                      <button class="btn-delete" onclick="removeAnswer(this)"><i class="fa-solid fa-minus"></i></button>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-outline mt-2" onclick="addAnswer(this)">
+                    <i class="fa-solid fa-plus"></i> Aggiungi Opzione
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn-sm mt-2" onclick="addQuestion()">
+                <i class="fa-solid fa-plus"></i> Aggiungi Domanda
+              </button>
+            </div>
+            
+            <!-- Personalizzazione Risultati (4 Profili) -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-user-group"></i><h3>Personalizzazione Risultati</h3>
+              </div>
+              
+              <div class="profile-tabs">
+                <button class="profile-tab active" data-profile="A">Profilo A</button>
+                <button class="profile-tab" data-profile="B">Profilo B</button>
+                <button class="profile-tab" data-profile="C">Profilo C</button>
+                <button class="profile-tab" data-profile="D">Profilo D</button>
+              </div>
+              
+              <!-- Profilo A -->
+              <div class="profile-content active" id="profile-A">
+                <div class="profile-card">
+                  <div class="profile-header">
+                    <span class="font-semibold"><i class="fa-solid fa-heart-pulse text-orange-400"></i> Profilo A: L'Anima Generosa</span>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Titolo del Risultato</label>
+                    <input type="text" class="profile-title" value="L'Anima Generosa (Il &quot;Sempre Disponibile&quot;)">
+                  </div>
+                  <div class="form-group">
+                    <label>Descrizione Dettagliata</label>
+                    <textarea class="profile-desc">Ti prendi cura degli altri con una naturalezza disarmante. La tua generosità è un dono prezioso, ma ricorda: per amare davvero gli altri, devi prima imparare ad amare te stesso. Il tuo percorso di crescita passa dal riconoscere il tuo valore indipendentemente da quanto dai.</textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Profilo B -->
+              <div class="profile-content hidden" id="profile-B">
+                <div class="profile-card">
+                  <div class="profile-header">
+                    <span class="font-semibold"><i class="fa-solid fa-shield-heart text-blue-400"></i> Profilo B: Il Custode Silenzioso</span>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Titolo del Risultato</label>
+                    <input type="text" class="profile-title" value="Il Custode Silenzioso">
+                  </div>
+                  <div class="form-group">
+                    <label>Descrizione Dettagliata</label>
+                    <textarea class="profile-desc">Proteggi le tue emozioni come un tesoro prezioso. La tua forza sta nella riservatezza e nella capacità di osservazione. La vera intimità nasce quando trovi il coraggio di condividere anche le tue fragilità con chi merita la tua fiducia.</textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Profilo C -->
+              <div class="profile-content hidden" id="profile-C">
+                <div class="profile-card">
+                  <div class="profile-header">
+                    <span class="font-semibold"><i class="fa-solid fa-fire text-red-400"></i> Profilo C: Il Cercatore di Connessione</span>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Titolo del Risultato</label>
+                    <input type="text" class="profile-title" value="Il Cercatore di Connessione">
+                  </div>
+                  <div class="form-group">
+                    <label>Descrizione Dettagliata</label>
+                    <textarea class="profile-desc">Desideri profondamente legami autentici e significativi. La tua sensibilità ti permette di creare connessioni intense, ma attenzione a non perdere te stesso nel desiderio di fusione. L'equilibrio tra vicinanza e autonomia è la chiave per relazioni sane.</textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Profilo D -->
+              <div class="profile-content hidden" id="profile-D">
+                <div class="profile-card">
+                  <div class="profile-header">
+                    <span class="font-semibold"><i class="fa-solid fa-crown text-purple-400"></i> Profilo D: L'Indipendente Strategico</span>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Titolo del Risultato</label>
+                    <input type="text" class="profile-title" value="L'Indipendente Strategico">
+                  </div>
+                  <div class="form-group">
+                    <label>Descrizione Dettagliata</label>
+                    <textarea class="profile-desc">Valuti la tua autonomia e libertà sopra ogni cosa. La tua forza è l'indipendenza, ma le relazioni richiedono anche vulnerabilità e compromesso. Imparare a bilanciare il bisogno di spazio con il desiderio di intimità ti aprirà a connessioni più profonde.</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('quiz')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Quiz & Risultati
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== TAB: MODULO DI CONTATTO ===== -->
+          <div id="tab-contact" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-comments"></i><h2>Gestione Modulo di Contatto</h2>
+            </div>
+            
+            <!-- Testi Sidebar -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-sidebar"></i><h3>Testi Laterali (Sidebar)</h3>
+              </div>
+              <div class="form-group mb-4">
+                <label for="sidebarTitle">Titolo Sidebar</label>
+                <input type="text" id="sidebarTitle" value="Il cambiamento inizia con una parola.">
+              </div>
+              <div class="form-group">
+                <label>Punti Elenco (uno per riga)</label>
+                <textarea id="sidebarList" placeholder="Ascolto attivo&#10;Riservatezza&#10;Approccio personalizzato">Ascolto attivo
+Riservatezza
+Approccio personalizzato
+Spazio non giudicante</textarea>
+              </div>
+            </div>
+            
+            <!-- Form Builder -->
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-wand-magic-sparkles"></i><h3>Costruttore di Domande</h3>
+              </div>
+              <p class="text-sm text-muted mb-4">Configura i campi del modulo. L'ID Campo è usato per EmailJS (non visibile all'utente).</p>
+              
+              <div id="formFieldsList">
+                <!-- Campo: Sfida più grande -->
+                <div class="formfield-card">
+                  <div class="question-header">
+                    <span class="question-title">Campo: Sfida più grande</span>
+                    <button class="btn-delete" onclick="removeFormField(this)"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>ID Campo (EmailJS)</label>
+                      <input type="text" class="field-id" value="challenge">
+                    </div>
+                    <div class="form-group">
+                      <label>Tipo di Input</label>
+                      <select class="field-type">
+                        <option value="textarea">Area di Testo</option>
+                        <option value="radio">Scelta Singola</option>
+                        <option value="scale">Scala 1-10</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group mt-2">
+                    <label>Testo della Domanda *</label>
+                    <input type="text" class="field-label" value="Qual è la sfida più grande che stai affrontando nelle relazioni? *">
+                  </div>
+                  <div class="form-group">
+                    <label>Placeholder (suggerimento)</label>
+                    <input type="text" class="field-placeholder" value="Descrivi brevemente la tua situazione...">
+                  </div>
+                </div>
+                
+                <!-- Campo: Scala prontezza -->
+                <div class="formfield-card">
+                  <div class="question-header">
+                    <span class="question-title">Campo: Scala prontezza</span>
+                    <button class="btn-delete" onclick="removeFormField(this)"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>ID Campo (EmailJS)</label>
+                      <input type="text" class="field-id" value="readiness">
+                    </div>
+                    <div class="form-group">
+                      <label>Tipo di Input</label>
+                      <select class="field-type">
+                        <option value="textarea">Area di Testo</option>
+                        <option value="radio">Scelta Singola</option>
+                        <option value="scale" selected>Scala 1-10</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group mt-2">
+                    <label>Testo della Domanda *</label>
+                    <input type="text" class="field-label" value="Quanto ti senti pronto/a a lavorare su te stesso/a? (1-10) *">
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Etichetta Minimo (1)</label>
+                      <input type="text" class="scale-min" value="Per niente">
+                    </div>
+                    <div class="form-group">
+                      <label>Etichetta Massimo (10)</label>
+                      <input type="text" class="scale-max" value="Completamente">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-sm mt-2" onclick="addFormField()">
+                <i class="fa-solid fa-plus"></i> Aggiungi Campo
+              </button>
+            </div>
+            
+            <!-- Messaggio di conferma -->
+            <div class="card">
+              <div class="form-group">
+                <label for="formSuccessMsg">Messaggio di Conferma dopo l'invio</label>
+                <input type="text" id="formSuccessMsg" value="Grazie! Ti ricontatterò entro 24 ore. Nel frattempo, respira. 🌿">
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('contact')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Modulo
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== TAB: SOCIAL & CONTATTI ===== -->
+          <div id="tab-social" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-share-nodes"></i><h2>Social & Contatti</h2>
+            </div>
+            
+            <div class="card">
+              <h3 class="font-semibold mb-4">Link Social</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label><i class="fa-brands fa-instagram" style="width:20px;"></i> Instagram</label>
+                  <input type="url" id="instagram" placeholder="https://instagram.com/tuoprofilo">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-brands fa-tiktok" style="width:20px;"></i> TikTok</label>
+                  <input type="url" id="tiktok" placeholder="https://tiktok.com/@tuoprofilo">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-brands fa-youtube" style="width:20px;"></i> YouTube</label>
+                  <input type="url" id="youtube" placeholder="https://youtube.com/@tuocanale">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-brands fa-telegram" style="width:20px;"></i> Telegram</label>
+                  <input type="url" id="telegram" placeholder="https://t.me/tuocanale">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-brands fa-whatsapp" style="width:20px;"></i> WhatsApp</label>
+                  <input type="url" id="whatsapp" placeholder="https://wa.me/393458407102">
+                </div>
+              </div>
+              
+              <div class="divider" style="height:1px;background:var(--border-light);margin:1.5rem 0;"></div>
+              
+              <h3 class="font-semibold mb-4">Dati di Contatto</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="contactEmail">Email</label>
+                  <input type="email" id="contactEmail" value="mentalcoachvaleria@gmail.com">
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone">Telefono</label>
+                  <input type="tel" id="contactPhone" value="+39 345 840 7102">
+                </div>
+                <div class="form-group" style="grid-column:1/-1;">
+                  <label for="contactAddress">Indirizzo Studio</label>
+                  <input type="text" id="contactAddress" value="Valle Lomellina, Pavia (PV), Italia">
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('social')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Contatti
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== TAB: GESTIONE RECENSIONI ===== -->
+          <div id="tab-reviews" class="tab-content hidden animate-fade">
+            <div class="section-header">
+              <i class="fa-solid fa-star"></i><h2>Gestione Recensioni</h2>
+            </div>
+            
+            <div class="card">
+              <button class="btn btn-sm mb-4" onclick="openReviewForm()">
+                <i class="fa-solid fa-plus"></i> Aggiungi Recensione
+              </button>
+              
+              <div id="reviewsList">
+                <!-- Recensione 1 -->
+                <div class="review-card">
+                  <div class="question-header">
+                    <div>
+                      <span class="font-semibold">Webnix It</span>
+                      <div class="stars">
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                      </div>
+                    </div>
+                    <div class="flex gap-2">
+                      <button class="btn-icon" onclick="editReview(this)" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+                      <button class="btn-delete" onclick="deleteReview(this)" title="Elimina"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </div>
+                  <p class="text-sm text-muted mb-2">4 mesi fa</p>
+                  <p class="text-secondary">"Un percorso trasformativo. Valeria ha una capacità unica di guidare con empatia e precisione."</p>
+                </div>
+                
+                <!-- Recensione 2 -->
+                <div class="review-card">
+                  <div class="question-header">
+                    <div>
+                      <span class="font-semibold">Marika Tasca</span>
+                      <div class="stars">
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star filled"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="flex gap-2">
+                      <button class="btn-icon" onclick="editReview(this)" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+                      <button class="btn-delete" onclick="deleteReview(this)" title="Elimina"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </div>
+                  <p class="text-sm text-muted mb-2">2 mesi fa</p>
+                  <p class="text-secondary">"Finalmente ho capito i miei schemi relazionali. Consiglio vivamente!"</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+              <button class="btn btn-success" onclick="saveSection('reviews')">
+                <i class="fa-solid fa-floppy-disk"></i> Salva Recensioni
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== SAVE BAR ===== -->
+    <div class="save-bar">
+      <span id="saveStatus" class="save-status">
+        <i class="fa-solid fa-circle"></i> Modifiche non salvate
+      </span>
+      <button id="saveAllBtn" class="btn btn-success">
+        <i class="fa-solid fa-floppy-disk"></i> Salva Tutto
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: GUIDA (HELP) ===== -->
+  <div id="modalHelp" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-question"></i> Guida alla Dashboard</h3>
+        <button class="modal-close" onclick="closeModal('modalHelp')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-gear"></i></div>
+          <div class="help-text">
+            <h4>Impostazioni Generali</h4>
+            <p>Configura il titolo del quiz, il Pixel Facebook e attiva/disattiva la modalità manutenzione.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-images"></i></div>
+          <div class="help-text">
+            <h4>Foto e Video</h4>
+            <p>Gestisci le immagini del carousel, dello studio e le certificazioni incollando i link diretti.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-palette"></i></div>
+          <div class="help-text">
+            <h4>Colori del Brand</h4>
+            <p>Personalizza ogni aspetto grafico. Usa i preset per cambiare tema velocemente o l'anteprima live per vedere i cambiamenti in tempo reale.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-brain"></i></div>
+          <div class="help-text">
+            <h4>Quiz e Risultati</h4>
+            <p>Aggiungi domande e assegna ogni opzione a un profilo (A/B/C/D). Personalizza i testi dei 4 risultati che gli utenti vedranno.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-comments"></i></div>
+          <div class="help-text">
+            <h4>Modulo di Contatto</h4>
+            <p>Costruisci il form con campi dinamici: testo, scelta multipla o scala. Ogni campo ha un ID tecnico per EmailJS.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-share-nodes"></i></div>
+          <div class="help-text">
+            <h4>Social & Contatti</h4>
+            <p>Aggiorna i link ai tuoi social e i dati di contatto visibili sul sito.</p>
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="help-text">
+            <h4>Recensioni</h4>
+            <p>Aggiungi, modifica o elimina le testimonianze dei clienti mostrate nella sezione dedicata.</p>
+          </div>
+        </div>
+        <p class="text-muted text-sm mt-4"><i class="fa-solid fa-lightbulb"></i> Ricorda: clicca sempre "Salva" in fondo alla pagina per applicare le modifiche al sito!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modalHelp')">Ho capito, grazie!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: ANTEPRIMA QUIZ ===== -->
+  <div id="modalQuizPreview" class="modal-overlay">
+    <div class="modal" style="max-width:520px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-eye"></i> Anteprima Quiz</h3>
+        <button class="modal-close" onclick="closeModal('modalQuizPreview')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="quiz-preview-container">
+          <div class="quiz-progress"><div class="quiz-progress-bar"></div></div>
+          <p class="text-xs text-muted mb-2">Domanda 1 di 7</p>
+          <div class="quiz-question">Quando ricevi un messaggio dalla persona che stai frequentando:</div>
+          <label class="quiz-option"><input type="radio" name="preview-q1" style="margin-right:8px;"> Rispondo quasi subito, non vedo l'ora di sentire la sua voce</label>
+          <label class="quiz-option"><input type="radio" name="preview-q1" style="margin-right:8px;"> Controllo ma aspetto un po' prima di rispondere</label>
+          <label class="quiz-option"><input type="radio" name="preview-q1" style="margin-right:8px;"> Rispondo quando ho tempo e sono tranquillo/a</label>
+          <label class="quiz-option"><input type="radio" name="preview-q1" style="margin-right:8px;"> Valuto il contenuto prima di decidere se rispondere</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('modalQuizPreview')">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: ANTEPRIMA MODULO ===== -->
+  <div id="modalFormPreview" class="modal-overlay">
+    <div class="modal" style="max-width:520px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-eye"></i> Anteprima Modulo</h3>
+        <button class="modal-close" onclick="closeModal('modalFormPreview')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-preview-container">
+          <div class="form-preview-title">Parliamone insieme</div>
+          <div class="form-preview-field">
+            <label>Qual è la sfida più grande che stai affrontando nelle relazioni? *</label>
+            <textarea placeholder="Descrivi brevemente la tua situazione..."></textarea>
+          </div>
+          <div class="form-preview-field">
+            <label>Quanto ti senti pronto/a a lavorare su te stesso/a? (1-10) *</label>
+            <div class="form-preview-scale"><span>1 - Per niente</span><span>10 - Completamente</span></div>
+            <input type="range" min="1" max="10" style="width:100%;margin-top:8px;">
+          </div>
+          <div class="form-preview-field">
+            <label>Come ci hai conosciuto?</label>
+            <select>
+              <option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Passaparola</option><option>Altro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('modalFormPreview')">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: FORM RECENSIONE ===== -->
+  <div id="modalReviewForm" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-star"></i> <span id="reviewFormTitle">Nuova Recensione</span></h3>
+        <button class="modal-close" onclick="closeModal('modalReviewForm')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="reviewEditIndex">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nome Cliente *</label>
+            <input type="text" id="reviewName" placeholder="Es. Maria R.">
+          </div>
+          <div class="form-group">
+            <label>Valutazione</label>
+            <div class="stars" id="reviewStars">
+              <i class="fa-regular fa-star" data-value="1"></i>
+              <i class="fa-regular fa-star" data-value="2"></i>
+              <i class="fa-regular fa-star" data-value="3"></i>
+              <i class="fa-regular fa-star" data-value="4"></i>
+              <i class="fa-regular fa-star" data-value="5"></i>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Data/Periodo</label>
+          <input type="text" id="reviewDate" placeholder="Es. 4 mesi fa">
+        </div>
+        <div class="form-group">
+          <label>Testo Recensione *</label>
+          <textarea id="reviewText" placeholder="Scrivi il messaggio..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('modalReviewForm')">Annulla</button>
+        <button class="btn btn-success" onclick="saveReview()"><i class="fa-solid fa-floppy-disk"></i> Salva Recensione</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Integration (Module) -->
+  <script type="module" src="admin-dashboard.js"></script>
+</body>
+</html>

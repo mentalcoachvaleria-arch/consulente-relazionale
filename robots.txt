@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mentalcoachvaleria.it/sitemap.xml

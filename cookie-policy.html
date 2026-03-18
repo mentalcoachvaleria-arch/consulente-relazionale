@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Cookie Policy - Valeria Moretti, Consulente Relazionale e Mental Coach"/>
+  <meta name="theme-color" content="#591c2f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Cookie Policy | Valeria Moretti</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: linear-gradient(135deg, #591c2f 0%, #7a2540 50%, #591c2f 100%);
+      background-attachment: fixed;
+      padding: 1.5rem 1rem 3rem;
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== CARD PRINCIPALE ===== */
+    .legal-card {
+      max-width: 850px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+      padding: 1.75rem 1.25rem 2.5rem;
+      animation: cardFadeIn 0.5s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .legal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #591c2f, #8b3a5a, #591c2f);
+    }
+
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(15px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ===== HEADER CARD ===== */
+    .legal-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #f0e6e8;
+      text-align: center;
+    }
+
+    .legal-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+      word-break: normal;
+    }
+
+    .last-update {
+      font-weight: 500;
+      color: #666;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: #faf8f9;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .last-update svg {
+      width: 15px;
+      height: 15px;
+      color: #591c2f;
+      flex-shrink: 0;
+    }
+
+    /* ===== SEZIONI ===== */
+    .legal-section {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .legal-section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* ===== ICONE SEZIONI ===== */
+    .section-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      background: linear-gradient(135deg, #591c2f 0%, #7a2540 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(89, 28, 47, 0.2);
+    }
+
+    .section-icon svg {
+      width: 22px;
+      height: 22px;
+      color: #ffffff;
+    }
+
+    .section-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.875rem;
+      line-height: 1.3;
+    }
+
+    .subsection-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 1.25rem 0 0.625rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .subsection-title::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #591c2f;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== TESTO E PARAGRAFI ===== */
+    p {
+      margin-bottom: 0.875rem;
+      color: #444;
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    p:last-child { margin-bottom: 0; }
+    .bold { font-weight: 700; color: #222; }
+    
+    .italic {
+      font-style: italic;
+      color: #666;
+      background: #faf8f9;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border-left: 3px solid #591c2f;
+      display: block;
+    }
+
+    /* ===== LISTE ===== */
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0.625rem 0 0.875rem;
+      color: #444;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+      padding-left: 1.5rem;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 7px;
+      height: 7px;
+      background: #591c2f;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    li:last-child { margin-bottom: 0; }
+
+    /* ===== LINK ===== */
+    a {
+      color: #591c2f;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0;
+      min-height: 44px;
+      word-break: break-word;
+    }
+
+    a:hover, a:focus {
+      color: #3a121f;
+      border-bottom-color: #591c2f;
+      outline: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #591c2f;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    a svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    /* ===== SERVICE CARD (OTTIMIZZATA MOBILE) ===== */
+    .service-card {
+      background: linear-gradient(135deg, #faf8f9 0%, #f5f0f2 100%);
+      border: 1px solid #e8e0e3;
+      padding: 1rem 1.25rem;
+      margin: 0.875rem 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(89, 28, 47, 0.08);
+    }
+
+    .service-card h3 {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      flex-wrap: wrap;
+    }
+
+    .service-card h3 svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .service-card p {
+      margin-bottom: 0.35rem;
+      font-size: 0.925rem;
+    }
+
+    .service-card p:last-child { margin-bottom: 0; }
+    .service-card ul { margin: 0.5rem 0 0.75rem; }
+    .service-card li { font-size: 0.925rem; }
+
+    /* ===== BADGE ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #fef2f4;
+      color: #591c2f;
+      padding: 0.3rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.775rem;
+      font-weight: 600;
+      margin: 0.4rem 0;
+      flex-wrap: wrap;
+    }
+
+    .badge svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ===== BACK TO TOP BUTTON ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+      background: linear-gradient(135deg, #591c2f, #7a2540);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(89, 28, 47, 0.35);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      padding: 0;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(89, 28, 47, 0.45);
+      outline: none;
+    }
+
+    .back-to-top:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 2px;
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===== RESPONSIVE: TABLET (481px - 768px) ===== */
+    @media (min-width: 481px) and (max-width: 768px) {
+      body { padding: 2rem 1.5rem 4rem; }
+      .legal-card {
+        padding: 2.25rem 1.75rem 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      .legal-title { font-size: 2rem; }
+      .section-title { font-size: 1.25rem; }
+      .section-icon { width: 48px; height: 48px; border-radius: 14px; }
+      .section-icon svg { width: 24px; height: 24px; }
+      .service-card { padding: 1.125rem 1.375rem; }
+    }
+
+    /* ===== RESPONSIVE: MOBILE PORTRAIT (≤480px) ===== */
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.875rem 2.5rem; }
+      .legal-card {
+        padding: 1.5rem 1rem 2.25rem;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+      .legal-title { font-size: 1.5rem; line-height: 1.25; }
+      .last-update { font-size: 0.85rem; padding: 0.35rem 0.75rem; }
+      .section-title { font-size: 1.1rem; }
+      .section-icon {
+        width: 42px; height: 42px;
+        min-width: 42px; min-height: 42px;
+        border-radius: 10px;
+      }
+      .section-icon svg { width: 20px; height: 20px; }
+      
+      /* Layout verticale per sezioni */
+      .legal-section { flex-direction: column; gap: 0.625rem; }
+      .section-icon { margin-bottom: 0.25rem; }
+      
+      /* Service card mobile */
+      .service-card {
+        padding: 0.875rem 1rem;
+      }
+      .service-card h3 { font-size: 0.975rem; }
+      .service-card p, .service-card li { font-size: 0.9rem; }
+      
+      /* Link più grandi per tap */
+      a { padding: 0.4rem 0; min-height: 48px; }
+      .badge { font-size: 0.75rem; padding: 0.25rem 0.6rem; }
+    }
+
+    /* ===== VERY SMALL DEVICES (≤360px) ===== */
+    @media (max-width: 360px) {
+      body { padding: 0.875rem 0.75rem 2rem; font-size: 15px; }
+      .legal-card { padding: 1.25rem 0.875rem 2rem; border-radius: 16px; }
+      .legal-title { font-size: 1.4rem; }
+      .section-title { font-size: 1.05rem; }
+      p, li { font-size: 0.925rem; line-height: 1.7; }
+      .service-card p, .service-card li { font-size: 0.875rem; }
+      .back-to-top { width: 44px; height: 44px; bottom: 1rem; right: 1rem; }
+    }
+
+    /* ===== LANDSCAPE MOBILE ===== */
+    @media (max-height: 500px) and (orientation: landscape) {
+      body { padding: 0.75rem 1rem; }
+      .legal-card {
+        padding: 1.25rem 1rem 1.5rem;
+        max-height: 95vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .back-to-top { display: none; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { font-size: 12pt; color: #000; background: #fff; padding: 0; min-height: auto; }
+      .legal-card { box-shadow: none; border-radius: 0; padding: 0; max-width: 100%; }
+      .legal-card::before { display: none; }
+      .section-icon { display: none; }
+      a { color: #000; text-decoration: underline; border-bottom: none; }
+      .legal-section { break-inside: avoid; page-break-inside: avoid; }
+      .back-to-top, .service-card { display: none !important; }
+    }
+
+    /* ===== ACCESSIBILITÀ ===== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .legal-card { animation: none; }
+      a, a svg, .back-to-top { transition: none !important; }
+    }
+    @media (prefers-contrast: high) {
+      body { background: #fff; }
+      .legal-card { border: 2px solid #000; }
+      a { text-decoration: underline; }
+    }
+
+    /* ===== UTILITIES ===== */
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .space-y-1 > * + * { margin-top: 0.25rem; }
+    
+    /* Prevent horizontal scroll */
+    img, video, iframe, pre, code { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+  <main class="legal-card" role="main">
+    
+    <header class="legal-header">
+      <h1 class="legal-title">Cookie Policy</h1>
+      <p class="last-update">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span>Ultimo aggiornamento: 9 marzo 2026</span>
+      </p>
+    </header>
+
+    <!-- Intro -->
+    <div class="section-content" style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0;">
+      <p>La presente Cookie Policy descrive l'utilizzo dei cookie e di tecnologie simili sul sito web mentalcoachvaleria.it (di seguito "Sito"), in conformità al Regolamento UE 2016/679 (GDPR) e alla Direttiva ePrivacy.</p>
+      <p>Navigando sul Sito l'utente può ricevere cookie tecnici e cookie di terze parti. Il Sito utilizza una piattaforma di gestione del consenso per permettere all'utente di scegliere quali cookie accettare.</p>
+    </div>
+
+    <!-- Sezione 1 -->
+    <section class="legal-section" aria-labelledby="section-1">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.125 2.5-2.5 2.5-.69 0-1.25.56-1.25 1.25v.75c0 .69.56 1.25 1.25 1.25.69 0 1.25-.56 1.25-1.25v-.75M12 19a1 1 0 11-2 0 1 1 0 012 0z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-1" class="section-title">1. Cosa sono i cookie</h2>
+        <p>I cookie sono piccoli file di testo che i siti web visitati inviano al dispositivo dell'utente (computer, smartphone o tablet), dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva.</p>
+        
+        <div class="badge mt-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>I cookie permettono di:</span>
+        </div>
+        <ul>
+          <li>garantire il corretto funzionamento del sito</li>
+          <li>migliorare l'esperienza di navigazione</li>
+          <li>ricordare alcune preferenze dell'utente</li>
+          <li>integrare contenuti e servizi di terze parti</li>
+        </ul>
+        
+        <p class="italic mt-4">I cookie non sono virus e non possono accedere ai file presenti sul dispositivo dell'utente.</p>
+      </div>
+    </section>
+
+    <!-- Sezione 2 -->
+    <section class="legal-section" aria-labelledby="section-2">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-2" class="section-title">2. Tipologie di cookie utilizzati</h2>
+        <p>Il Sito utilizza esclusivamente:</p>
+        
+        <h3 class="subsection-title">Cookie tecnici</h3>
+        <p>Sono necessari per il funzionamento del sito e non richiedono consenso.</p>
+        <p class="mt-2">Possono includere:</p>
+        <ul>
+          <li>cookie di navigazione</li>
+          <li>cookie di sicurezza</li>
+          <li>cookie di gestione del consenso</li>
+        </ul>
+        
+        <h3 class="subsection-title">Cookie di terze parti</h3>
+        <p>Il Sito integra servizi esterni che potrebbero installare cookie sul dispositivo dell'utente.</p>
+        <p>Il Titolare del sito non controlla direttamente questi cookie, che sono gestiti dai rispettivi fornitori.</p>
+      </div>
+    </section>
+
+    <!-- Sezione 3 -->
+    <section class="legal-section" aria-labelledby="section-3">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-3" class="section-title">3. Servizi di terze parti utilizzati</h2>
+        
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>Cookiebot (gestione consenso cookie)</span>
+          </h3>
+          <p>Il Sito utilizza Cookiebot per la gestione del consenso ai cookie.</p>
+          <p class="bold mt-2">Cookiebot:</p>
+          <ul>
+            <li>memorizza le preferenze di consenso dell'utente</li>
+            <li>permette di accettare o rifiutare categorie di cookie</li>
+            <li>registra il consenso in conformità al GDPR</li>
+          </ul>
+          <p class="mt-2">Per maggiori informazioni: <a href="https://www.cookiebot.com/it/privacy-policy/" target="_blank" rel="noopener noreferrer">https://www.cookiebot.com/it/privacy-policy/ <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>YouTube</span>
+          </h3>
+          <p>Il Sito incorpora video tramite YouTube.</p>
+          <p>Quando l'utente visualizza un video incorporato, YouTube può installare cookie che consentono:</p>
+          <ul>
+            <li>la riproduzione del video</li>
+            <li>statistiche di visualizzazione</li>
+            <li>preferenze utente</li>
+          </ul>
+          <p class="mt-2">Informativa: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+            <span>Firebase</span>
+          </h3>
+          <p>Il sito utilizza Firebase per alcune funzionalità tecniche e di backend.</p>
+          <p>Firebase può raccogliere dati tecnici come:</p>
+          <ul>
+            <li>indirizzo IP</li>
+            <li>tipo di dispositivo</li>
+            <li>dati di sessione</li>
+          </ul>
+          <p class="mt-2">Questi dati sono utilizzati per garantire il corretto funzionamento dei servizi.</p>
+          <p class="mt-2">Informativa: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">https://firebase.google.com/support/privacy <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>EmailJS</span>
+          </h3>
+          <p>Il Sito utilizza EmailJS per inviare automaticamente i dati dei moduli di contatto e dei quiz compilati dagli utenti.</p>
+          <p>EmailJS consente l'invio delle informazioni inserite nei moduli direttamente all'indirizzo email del titolare del sito.</p>
+          <p class="mt-2">Informativa: <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">https://www.emailjs.com/legal/privacy-policy/ <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+            </svg>
+            <span>Hosting del sito</span>
+          </h3>
+          <p>Il sito è ospitato tramite GitHub (GitHub Pages).</p>
+          <p>GitHub può raccogliere dati tecnici come:</p>
+          <ul>
+            <li>indirizzo IP</li>
+            <li>informazioni sul browser</li>
+            <li>log di accesso</li>
+          </ul>
+          <p class="mt-2">per finalità di sicurezza, manutenzione e funzionamento del servizio.</p>
+          <p class="mt-2">Informativa: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+            <span>Gestione del dominio</span>
+          </h3>
+          <p>Il dominio del sito è registrato tramite Aruba.</p>
+          <p>Aruba può trattare dati tecnici relativi alla gestione del dominio e alla sicurezza delle infrastrutture.</p>
+          <p class="mt-2">Informativa: <a href="https://www.aruba.it/informativa_arubaspa.pdf" target="_blank" rel="noopener noreferrer">https://www.aruba.it/informativa_arubaspa.pdf <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></p>
+        </div>
+
+        <div class="service-card">
+          <h3 class="subsection-title" style="margin:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:#591c2f;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span>Social network</span>
+          </h3>
+          <p>Il Sito contiene collegamenti ai seguenti social network:</p>
+          <ul>
+            <li>Instagram</li>
+            <li>TikTok</li>
+            <li>YouTube</li>
+            <li>Telegram</li>
+            <li>WhatsApp</li>
+          </ul>
+          <p class="mt-2">Quando l'utente clicca su tali link viene reindirizzato verso piattaforme esterne che possono installare cookie secondo le proprie policy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 4 -->
+    <section class="legal-section" aria-labelledby="section-4">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-4" class="section-title">4. Gestione del consenso</h2>
+        <p>Al primo accesso al sito viene mostrato un banner cookie che consente all'utente di:</p>
+        <ul>
+          <li>accettare tutti i cookie</li>
+          <li>rifiutare i cookie non necessari</li>
+          <li>personalizzare le preferenze</li>
+        </ul>
+        <p class="mt-4">L'utente può modificare il consenso in qualsiasi momento tramite il pannello di gestione dei cookie disponibile sul sito.</p>
+      </div>
+    </section>
+
+    <!-- Sezione 5 -->
+    <section class="legal-section" aria-labelledby="section-5">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-5" class="section-title">5. Come disabilitare i cookie dal browser</h2>
+        <p>L'utente può comunque gestire o disabilitare i cookie tramite le impostazioni del proprio browser.</p>
+        
+        <p class="bold mt-4">Guide ufficiali:</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></li>
+          <li><a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank" rel="noopener noreferrer">Mozilla Firefox <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></li>
+          <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></li>
+          <li><a href="https://support.microsoft.com/it-it/windows/eliminare-e-gestire-i-cookie-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer">Microsoft Edge <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a></li>
+        </ul>
+        
+        <p class="italic mt-4">Disabilitando alcuni cookie alcune funzionalità del sito potrebbero non funzionare correttamente.</p>
+      </div>
+    </section>
+
+    <!-- Sezione 6 -->
+    <section class="legal-section" aria-labelledby="section-6">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-6" class="section-title">6. Diritti dell'utente</h2>
+        <p>Ai sensi del Regolamento UE 2016/679 (GDPR) l'utente ha il diritto di:</p>
+        <ul>
+          <li>accedere ai propri dati</li>
+          <li>richiedere la rettifica</li>
+          <li>richiedere la cancellazione</li>
+          <li>limitare il trattamento</li>
+          <li>opporsi al trattamento</li>
+          <li>richiedere la portabilità dei dati</li>
+        </ul>
+        <p class="mt-4">Per esercitare i propri diritti l'utente può contattare il Titolare del trattamento.</p>
+      </div>
+    </section>
+
+    <!-- Sezione 7 -->
+    <section class="legal-section" aria-labelledby="section-7">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-7" class="section-title">7. Contatti</h2>
+        <p>Per qualsiasi informazione relativa alla presente Cookie Policy o al trattamento dei dati personali è possibile contattare:</p>
+        <p class="mt-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:#591c2f;" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Email: <a href="mailto:mentalcoachvaleria@gmail.com">mentalcoachvaleria@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Sezione 8 -->
+    <section class="legal-section" aria-labelledby="section-8">
+      <div class="section-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
+      </div>
+      <div class="section-content">
+        <h2 id="section-8" class="section-title">8. Modifiche alla Cookie Policy</h2>
+        <p>La presente Cookie Policy può essere aggiornata periodicamente per adeguarsi a:</p>
+        <ul>
+          <li>modifiche normative</li>
+          <li>aggiornamenti dei servizi utilizzati</li>
+          <li>cambiamenti tecnici del sito</li>
+        </ul>
+        <p class="mt-4">Si invita pertanto l'utente a consultare periodicamente questa pagina.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pulsante Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Torna all'inizio della pagina">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+
+  <script>
+    // ===== BACK TO TOP BUTTON =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const backToTop = document.getElementById('backToTop');
+      
+      if (backToTop) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 400) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
+        }, { passive: true });
+        
+        backToTop.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        backToTop.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
