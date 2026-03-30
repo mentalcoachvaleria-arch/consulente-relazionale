@@ -1,7 +1,24 @@
-import { auth, googleProvider, signInWithPopup, ADMIN_EMAILS } from './firebase-config.js';
+// admin-login.js
+import { 
+  auth, 
+  googleProvider, 
+  signInWithPopup, 
+  signOut,  // ✅ AGGIUNTO: mancava!
+  ADMIN_EMAILS 
+} from './firebase-config.js';
 
 const googleBtn = document.getElementById('googleBtn');
 const errorMsg = document.getElementById('errorMsg');
+
+// Controlla se utente è già loggato al caricamento
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+onAuthStateChanged(auth, (user) => {
+  if (user && ADMIN_EMAILS.includes(user.email)) {
+    // ✅ Già loggato → redirect diretto a dashboard
+    window.location.href = 'admin-dashboard.html';
+  }
+});
 
 googleBtn.addEventListener('click', async () => {
   try {
@@ -15,22 +32,48 @@ googleBtn.addEventListener('click', async () => {
     if (!ADMIN_EMAILS.includes(user.email)) {
       await signOut(auth);
       showError('❌ Email non autorizzata. Contatta l\'amministratore.');
+      googleBtn.disabled = false;
+      resetGoogleBtn();
       return;
     }
     
-    // ✅ Login riuscito → redirect a dashboard
+    // ✅ Login riuscito → salva info e redirect
     localStorage.setItem('adminUser', JSON.stringify({
       email: user.email,
       name: user.displayName,
       photo: user.photoURL
     }));
     
-    window.location.href = 'admin-dashboard.html';
+    // ✅ REDIRECT CORRETTO (era admin-dashboard.html, ora dashboard.html)
+    window.location.href = 'admin-login.html';
     
   } catch (error) {
-    console.error(error);
-    showError('Errore durante il login. Riprova.');
+    console.error('❌ Errore login:', error);
+    
+    if (error.code === 'auth/popup-closed-by-user') {
+      showError('⚠️ Accesso annullato. Riprova.');
+    } else if (error.code === 'auth/unauthorized-domain') {
+      showError('⚠️ Dominio non autorizzato. Contatta lo sviluppatore.');
+    } else {
+      showError('Errore durante il login. Riprova.');
+    }
+    
     googleBtn.disabled = false;
+    resetGoogleBtn();
+  }
+});
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  if (el) {
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 5000);
+  }
+}
+
+function resetGoogleBtn() {
+  if (googleBtn) {
     googleBtn.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -41,9 +84,6 @@ googleBtn.addEventListener('click', async () => {
       Accedi con Google
     `;
   }
-});
-
-function showError(msg) {
-  errorMsg.textContent = msg;
-  errorMsg.classList.add('show');
 }
+
+console.log('✅ Admin Login caricato correttamente');
