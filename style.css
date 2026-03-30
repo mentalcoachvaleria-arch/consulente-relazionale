@@ -3,7 +3,38 @@ CUSTOM STYLES - Valeria Moretti Website
 Versione: 9.0 - Mobile Optimized + Touch Effects
 Colore Brand: #591c2f | Transition: ease-in-out
 ============================================ */
+  /* Animazioni e interazioni per #webnix-link (non possono essere inline) */
+  #webnix-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    animation: pulseFloat 2.5s ease-in-out infinite;
+    transition: color 0.3s ease, transform 0.2s ease;
+    will-change: transform;
+  }
 
+  @keyframes pulseFloat {
+    0%, 100% { transform: translateY(0) scale(1); text-shadow: 0 0 2px rgba(0, 123, 255, 0.3); }
+    50% { transform: translateY(-3px) scale(1.05); text-shadow: 0 4px 8px rgba(0, 123, 255, 0.5); }
+  }
+
+  #webnix-link:hover { color: #0056b3; animation-duration: 1.5s; text-shadow: 0 0 12px rgba(0, 123, 255, 0.8); }
+  #webnix-link:active { transform: translateY(0) scale(0.95); animation: none; transition: transform 0.1s ease; }
+  #webnix-link:focus-visible { outline: 2px solid #007bff; outline-offset: 4px; border-radius: 4px; }
+
+  @media (max-width: 768px) { 
+    #footer-webnix { font-size: 13px !important; padding: 14px 16px !important; } 
+    #webnix-link { animation-duration: 3s; } 
+  }
+  @media (max-width: 480px) { 
+    #footer-webnix { font-size: 12px !important; padding: 12px 10px !important; } 
+  }
+  @media (prefers-reduced-motion: reduce) { 
+    #webnix-link { animation: none; transition: none; } 
+  }
 /* ============================================
 ROOT VARIABLES
 ============================================ */
